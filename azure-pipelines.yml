@@ -6,12 +6,17 @@
 trigger:
 - main
 
+pr:
+- '*'
+
 pool:
-  vmImage: windows-latest
+  vmImage: 'windows-latest'
 
 steps:
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(build.sourcesDirectory)'
-    includeRootFolder: false
-- task: PublishBuildArtifacts@1
+- script: echo 'This is the content of the GitHub file.'
+  displayName: 'Display GitHub File Content'
+
+- script: |
+    echo 'Display Contents of index.html:'
+    cat $(Build.SourcesDirectory)/web-app/demo.html
+  displayName: 'Display Contents of demo.html'
